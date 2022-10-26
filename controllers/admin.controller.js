@@ -212,7 +212,7 @@ const addResults = async (req, res, next) => {
                     .status(200)
                     .json({
                         status: 1,
-                        data: data,
+                        message: "Result was successfully stored",
                     })
                     .end();
             })
