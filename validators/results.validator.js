@@ -6,7 +6,7 @@ const subjectArray = Joi.object().keys({
         faMark: Joi.string(),
         faOralMark: Joi.string(),
         saMark: Joi.string(),
-        saOral: Joi.string(),
+        saOralMark: Joi.string(),
         overallMark: Joi.string()
     })
 });

@@ -203,9 +203,9 @@ const addResults = async (req, res, next) => {
             "grade": "D"
         }
 
-        const result = req.body.result;
+        const result = req.body;
 
-        await adminModel.addResults(jo)
+        await adminModel.addResults(result)
             .then(function (data) {
                 console.log("Result has been stored", data);
                 res
