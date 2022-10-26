@@ -21,7 +21,7 @@ const signUpAdmin = async (req, res, next) => {
                     .status(200)
                     .json({
                         status: 1,
-                        data: data,
+                        message: "Admin was registered successfully",
                     })
                     .end();
             })

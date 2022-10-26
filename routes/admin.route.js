@@ -10,7 +10,7 @@ router.route('/signIn').post(ReqBodyValidator('login'), adminController.login);
 
 router.route('/admins').get(passport.authenticate('jwt', { session: false }), adminController.getAllAdmin);
 
-router.route('/addResults').post(passport.authenticate('jwt', { session: false }), adminController.addResults);
+router.route('/addResult').post(passport.authenticate('jwt', { session: false }), adminController.addResults);
 
 router.route('/results').get(passport.authenticate('jwt', { session: false }), adminController.getResults);
 
