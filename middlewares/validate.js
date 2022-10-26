@@ -1,5 +1,3 @@
-
-const createHttpError = require('http-errors')
 const Validators = require('../validators')
 
 const ReqBodyValidator = function(validator) {
@@ -16,8 +14,8 @@ const ReqBodyValidator = function(validator) {
             //* Pass err to next
             //! If validation error occurs call next with HTTP 422. Otherwise HTTP 500
             if(err.isJoi) 
-                return next(createHttpError(422, {message: err.message}))
-            next(createHttpError(500))
+                return next(res.status(422).json({message: "Unprocessable entity"}))
+            next(res.status(500).json({message: "Internal server error"}))
         }
     }
 }
