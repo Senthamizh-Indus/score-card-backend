@@ -9,7 +9,7 @@ const passport = require('passport');
 const session = require('express-session');
 const db = require('./configuration/dbConnection');
 const adminRoute = require('./routes/admin.route');
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 
 // Create Express app
 const app = express();
@@ -47,7 +47,7 @@ app.get('/', (req, res)=> {
   });
 });
 
-app.use('/.netlify/functions/server', adminRoute);
+// app.use('/.netlify/functions/server', adminRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,4 +68,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
