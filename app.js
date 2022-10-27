@@ -8,8 +8,9 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
-const db = require('./configuration/dbConnection');
 const adminRoute = require('./routes/admin.route');
+const studentRoute = require('./routes/student.route');
+const scorecardRoute = require('./routes/scorecard.route');
 
 // Create Express app
 const app = express();
@@ -53,14 +54,10 @@ require('./middlewares/passport')(passport);
 
 // Routes
 app.use('/', adminRoute);
+app.use('/', studentRoute);
+app.use('/', scorecardRoute);
 app.get('/', (req, res)=> {
-  const sql = 'SELECT * FROM tbl_admin WHERE id = $1';
-  const values = ["1"];
-  db.query(sql, values).then(response => {
-    const data = response.rows;
-    data.forEach(row => console.log(row));
-    res.json({msg: "success", data: data});
-  });
+  res.json({message: "Score card Backend API's"});
 });
 
 // catch 404 and forward to error handler

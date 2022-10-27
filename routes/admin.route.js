@@ -4,14 +4,13 @@ const router = express.Router();
 const adminController = require('../controllers/admin.controller');
 const { ReqBodyValidator } = require('../middlewares/validate');
 
+// Add the admin
 router.route('/signUp').post(ReqBodyValidator('admin'), adminController.signUpAdmin);
 
+// Login for admin
 router.route('/signIn').post(ReqBodyValidator('login'), adminController.login);
 
+// Get all the admins
 router.route('/admins').get(passport.authenticate('jwt', { session: false }), adminController.getAllAdmin);
-
-router.route('/addResult').post(passport.authenticate('jwt', { session: false }), adminController.addResults);
-
-router.route('/results').get(passport.authenticate('jwt', { session: false }), adminController.getResults);
 
 module.exports = router;

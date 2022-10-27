@@ -64,35 +64,4 @@ const getAllAdmin = async () => {
     });
 }
 
-const addResults = async (result) => {
-    return new Promise(function (resolve, reject) {
-        connection.query(
-            "INSERT INTO public.tbl_results (part1, part2, part3, cgp, grade) VALUES ($1, $2, $3, $4, $5);",
-            [result.part1, result.part2, result.part3, result.cgp, result.grade]
-        )
-        .then(function (data) {
-            resolve(data);
-        })
-        .catch(function (err) {
-            var error = new Error(err);
-            reject(error);
-        });
-    });
-}
-
-const getResults = async () => {
-    return new Promise(function (resolve, reject) {
-        connection.query(
-            "SELECT * FROM public.tbl_results;"
-        )
-        .then(function (data) {
-            resolve(data);
-        })
-        .catch(function (err) {
-            var error = new Error(err);
-            reject(error);
-        });
-    })
-}
-
-module.exports = { signUpAdmin, getAdmin, getAdminByName, getAllAdmin, addResults, getResults }
+module.exports = { signUpAdmin, getAdmin, getAdminByName, getAllAdmin }
