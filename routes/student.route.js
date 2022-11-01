@@ -11,12 +11,12 @@ router.route('/student').post(passport.authenticate('jwt', { session: false }), 
 router.route('/students').get(passport.authenticate('jwt', { session: false }), studentController.getStudents);
 
 // Get student detail
-router.route('/getStudent').get(studentController.getStudent);
+router.route('/getStudent').get(passport.authenticate('jwt', { session: false }), studentController.getStudent);
 
 // Update student
-router.route('/updateStudent').put(studentController.updateStudent);
+router.route('/updateStudent').put(passport.authenticate('jwt', { session: false }), studentController.updateStudent);
 
 // Get student details
-router.route('/deleteStudent').put(studentController.deleteStudent);
+router.route('/deleteStudent').put(passport.authenticate('jwt', { session: false }), studentController.deleteStudent);
 
 module.exports = router;
