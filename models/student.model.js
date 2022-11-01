@@ -19,8 +19,10 @@ const addStudent = async (student) => {
 
 const getStudents = async () => {
     return new Promise(function (resolve, reject) {
+        const status = '1';
         connection.query(
-            "SELECT * FROM public.tbl_student;"
+            "SELECT * FROM public.tbl_student WHERE status = $1;",
+            [status]
         )
         .then(function (data) {
             resolve(data);
@@ -34,9 +36,10 @@ const getStudents = async () => {
 
 const getStudent = async (id) => {
     return new Promise(function (resolve, reject) {
+        const status = '1';
         connection.query(
-            "SELECT * FROM public.tbl_student WHERE id = $1;",
-            [id]
+            "SELECT * FROM public.tbl_student WHERE id = $1 and status = $6;",
+            [id, status]
         )
         .then(function (data) {
             resolve(data);
@@ -50,9 +53,10 @@ const getStudent = async (id) => {
 
 const updateStudent = async (student) => {
     return new Promise(function (resolve, reject) {
+        const status = '1';
         connection.query(
-            "UPDATE public.tbl_student SET student_name = $1, standard = $2, section = $3, rollno = $4 WHERE id = $5;"
-            [student.student_name, student.standard, student.section, student.rollno, student.id]
+            "UPDATE public.tbl_student SET student_name = $1, standard = $2, section = $3, rollno = $4 WHERE id = $5 and status = $6 RETURNING *;",
+            [student.student_name, student.standard, student.section, student.rollno, student.id, status]
         )
         .then(function (data) {
             resolve(data);
@@ -68,7 +72,7 @@ const deleteStudent = async (student_id) => {
     return new Promise(function (resolve, reject) {
         const status = '2';
         connection.query(
-            "UPDATE public.tbl_student SET status = $1 WHERE ID = $2;"
+            "UPDATE public.tbl_student SET status = $1 WHERE ID = $2;",
             [status, student_id]
         )
         .then(function (data) {

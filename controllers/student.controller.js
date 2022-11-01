@@ -113,15 +113,14 @@ const getStudent = async (req, res, next) => {
 const updateStudent = async (req, res, next) => {
     try {
         const student = req.body;
-        console.log("Request body => ", student);
         await studentModel.updateStudent(student)
             .then(function (data) {
-                console.log("Student was updated => ", data.rows);
+                console.log("Student was updated successfully");
                 res
                     .status(200)
                     .json({
                         status: 1,
-                        data: data.rows,
+                        message: "Student was updated successfully",
                     })
                     .end();
             })
@@ -153,12 +152,12 @@ const deleteStudent = async (req, res, next) => {
         const student = req.body;
         await studentModel.deleteStudent(student.id)
             .then(function (data) {
-                console.log("Student was deleted => ", data.rows);
+                console.log("Student was deleted successfully");
                 res
                     .status(200)
                     .json({
                         status: 1,
-                        data: data.rows,
+                        message: "Student was deleted successfully",
                     })
                     .end();
             })
