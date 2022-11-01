@@ -10,4 +10,13 @@ router.route('/student').post(passport.authenticate('jwt', { session: false }), 
 // Get student details
 router.route('/students').get(passport.authenticate('jwt', { session: false }), studentController.getStudents);
 
+// Get student detail
+router.route('/getStudent').get(studentController.getStudent);
+
+// Update student
+router.route('/updateStudent').put(studentController.updateStudent);
+
+// Get student details
+router.route('/deleteStudent').put(studentController.deleteStudent);
+
 module.exports = router;

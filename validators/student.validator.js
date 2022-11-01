@@ -1,9 +1,10 @@
 const Joi = require('joi');
 
 const addStudentSchema = Joi.object().keys({
-    studnet_name: Joi.string().required(),
+    student_name: Joi.string().required(),
     standard: Joi.string().required(),
-    section: Joi.string().required()
+    section: Joi.string().required(),
+    rollno: Joi.string().required(),
 });
 
 module.exports = addStudentSchema

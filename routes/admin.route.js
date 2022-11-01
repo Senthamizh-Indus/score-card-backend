@@ -10,7 +10,7 @@ router.route('/signUp').post(ReqBodyValidator('admin'), adminController.signUpAd
 // Login for admin
 router.route('/signIn').post(ReqBodyValidator('login'), adminController.login);
 
-// Get all the admins
-router.route('/admins').get(passport.authenticate('jwt', { session: false }), adminController.getAllAdmin);
+// // Get all the admins
+// router.route('/admins').get(passport.authenticate('jwt', { session: false }), adminController.getAllAdmin);
 
 module.exports = router;
