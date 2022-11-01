@@ -38,41 +38,6 @@ const addResult = async (req, res, next) => {
     }
 }
 
-const getResults = async (req, res, next) => {
-    try {
-        await scorecardModel.getResults()
-            .then(function (data) {
-                console.log("Got all the results => ", data.rows);
-                res
-                    .status(200)
-                    .json({
-                        status: 1,
-                        data: data.rows,
-                    })
-                    .end();
-            })
-            .catch((err) => {
-                console.error(err);
-                res
-                    .status(400)
-                    .json({
-                        status: 3,
-                        message: err,
-                    })
-                    .end();
-            });
-    } catch (err) {
-        console.error(err);
-        res
-            .status(400)
-            .json({
-                status: 3,
-                message: err,
-            })
-            .end();
-    }
-}
-
 const getResult = async (req, res, next) => {
     try {
         const id = req.params;
@@ -109,76 +74,4 @@ const getResult = async (req, res, next) => {
     }
 }
 
-const updateResult = async (req, res, next) => {
-    try {
-        const result = req.body;
-        await scorecardModel.updateResult(result)
-            .then(function (data) {
-                console.log("Result got updated => ", data.rows);
-                res
-                    .status(200)
-                    .json({
-                        status: 1,
-                        data: data.rows,
-                    })
-                    .end();
-            })
-            .catch((err) => {
-                console.error(err);
-                res
-                    .status(400)
-                    .json({
-                        status: 3,
-                        message: err,
-                    })
-                    .end();
-            });
-    } catch (err) {
-        console.error(err);
-        res
-            .status(400)
-            .json({
-                status: 3,
-                message: err,
-            })
-            .end();
-    }
-}
-
-const deleteResult = async (req, res, next) => {
-    try {
-        const result = req.body;
-        await scorecardModel.deleteResult(result)
-            .then(function (data) {
-                console.log("Result got Deleted => ", data.rows);
-                res
-                    .status(200)
-                    .json({
-                        status: 1,
-                        data: data.rows,
-                    })
-                    .end();
-            })
-            .catch((err) => {
-                console.error(err);
-                res
-                    .status(400)
-                    .json({
-                        status: 3,
-                        message: err,
-                    })
-                    .end();
-            });
-    } catch (err) {
-        console.error(err);
-        res
-            .status(400)
-            .json({
-                status: 3,
-                message: err,
-            })
-            .end();
-    }
-}
-
-module.exports = { addResult, getResults, getResult, updateResult, deleteResult }
+module.exports = { addResult, getResult }
