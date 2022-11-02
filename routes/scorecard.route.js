@@ -7,6 +7,6 @@ const scorecardController = require('../controllers/scorecard.controller');
 router.route('/addResult').post(passport.authenticate('jwt', { session: false }), scorecardController.addResult);
 
 // Get the results
-router.route('/result/:id').get(scorecardController.getResult);
+router.route('/result/:id').get(passport.authenticate('jwt', { session: false }), scorecardController.getResult);
 
 module.exports = router;

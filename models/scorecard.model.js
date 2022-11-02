@@ -32,7 +32,8 @@ const getResult = async (id) => {
     return new Promise(function (resolve, reject) {
         const status = '1';
         connection.query(
-            "SELECT * FROM public.tbl_results WHERE student_id = $1 and status = $2;",
+            // "SELECT * FROM public.tbl_results WHERE student_id = $1 and status = $2;",
+            `SELECT student.id as student_id, student.student_name, student.standard, student.section, student.rollno, result.id as result_id, result.subject, result."faMark", result."faOralMark", result."saMark", result."saOralMark", result."overallMark" FROM public.tbl_results as result INNER JOIN public.tbl_student as student ON result.student_id = student.id WHERE result.student_id = $1 and student.status = $2;`,
             [id, status]
         )
         .then(function (data) {

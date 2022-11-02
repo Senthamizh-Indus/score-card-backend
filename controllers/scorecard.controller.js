@@ -40,7 +40,7 @@ const addResult = async (req, res, next) => {
 
 const getResult = async (req, res, next) => {
     try {
-        const id = req.params;
+        const id = req.params.id;
         await scorecardModel.getResult(id)
             .then(function (data) {
                 console.log("Got the result => ", data.rows);
