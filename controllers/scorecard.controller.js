@@ -74,4 +74,42 @@ const getResult = async (req, res, next) => {
     }
 }
 
-module.exports = { addResult, getResult }
+const updateResult = async (req, res, next) => {
+    try {
+        const result = req.body;
+        console.log("Result request => ", result);
+        await scorecardModel.updateResult(result)
+            .then(function (data) {
+                console.log("Result has been updated", data);
+                res
+                    .status(200)
+                    .json({
+                        status: 1,
+                        message: "Result was successfully updated",
+                    })
+                    .end();
+            })
+            .catch((err) => {
+                console.error(err);
+                res
+                    .status(400)
+                    .json({
+                        status: 3,
+                        message: err,
+                    })
+                    .end();
+            });
+
+    } catch (err) {
+        console.error(err);
+        res
+            .status(400)
+            .json({
+                status: 3,
+                message: err,
+            })
+            .end();
+    }
+}
+
+module.exports = { addResult, getResult, updateResult }

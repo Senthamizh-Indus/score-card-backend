@@ -46,4 +46,30 @@ const getResult = async (id) => {
     })
 }
 
-module.exports = { addResult, getResult }
+const updateResult = async (result) => {
+
+    const subjects = result.subjects;
+    let values = [];
+
+    for (const i in subjects) {
+        let value = `UPDATE public.tbl_results SET subject = '${subjects[i].subject}', "faMark" = ${subjects[i].faMark}, "faOralMark" = ${subjects[i].faOralMark}, "saMark" = ${subjects[i].saMark}, "saOralMark" = ${subjects[i].saOralMark}, "overallMark" = ${subjects[i].overallMark} WHERE id = '${subjects[i].result_id}'`
+        values.push(value); 
+    }
+
+    let query = values.join(";");
+
+    return new Promise(function (resolve, reject) {
+        connection.query(
+            query
+        )
+        .then(function (data) {
+            resolve(data);
+        })
+        .catch(function (err) {
+            var error = new Error(err);
+            reject(error);
+        });
+    });
+}
+
+module.exports = { addResult, getResult, updateResult }

@@ -9,4 +9,7 @@ router.route('/addResult').post(passport.authenticate('jwt', { session: false })
 // Get the results
 router.route('/result/:id').get(passport.authenticate('jwt', { session: false }), scorecardController.getResult);
 
+// Update Results
+router.route('/updateResult').put(passport.authenticate('jwt', { session: false }), scorecardController.updateResult);
+
 module.exports = router;
