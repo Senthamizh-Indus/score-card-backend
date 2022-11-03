@@ -49,10 +49,17 @@ const getResult = async (id) => {
 const updateResult = async (result) => {
 
     const subjects = result.subjects;
+    const student_id = result.student_id;
+    const status = '1';
     let values = [];
 
     for (const i in subjects) {
-        let value = `UPDATE public.tbl_results SET subject = '${subjects[i].subject}', "faMark" = ${subjects[i].faMark}, "faOralMark" = ${subjects[i].faOralMark}, "saMark" = ${subjects[i].saMark}, "saOralMark" = ${subjects[i].saOralMark}, "overallMark" = ${subjects[i].overallMark} WHERE id = '${subjects[i].result_id}'`
+        let value;
+        if (subjects[i].result_id === undefined){
+            value = `INSERT INTO public.tbl_results (subject, "faMark", "faOralMark", "saMark", "saOralMark", "overallMark", student_id, status) VALUES ('${subjects[i].subject}', ${subjects[i].faMark}, ${subjects[i].faOralMark}, ${subjects[i].saMark}, ${subjects[i].saOralMark}, ${subjects[i].overallMark}, '${student_id}', '${status}')`;
+        } else {
+            value = `UPDATE public.tbl_results SET subject = '${subjects[i].subject}', "faMark" = ${subjects[i].faMark}, "faOralMark" = ${subjects[i].faOralMark}, "saMark" = ${subjects[i].saMark}, "saOralMark" = ${subjects[i].saOralMark}, "overallMark" = ${subjects[i].overallMark} WHERE id = '${subjects[i].result_id}'`;
+        }
         values.push(value); 
     }
 
