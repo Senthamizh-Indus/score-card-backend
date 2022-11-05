@@ -1,5 +1,5 @@
 const connection = require('../configuration/dbConnection');
-
+ 
 const signUpAdmin = async (admin) => {
     return new Promise(function (resolve, reject) {
         connection.query(
